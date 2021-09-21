@@ -8,20 +8,61 @@ export class News extends Component {
 
     constructor(){
         super();
-        console.log("constructor..", KEY);
+        //console.log("constructor..", KEY);
         this.state = {
             articles : this.articles,
-            loading : false
+            loading : false,
+            page : 1,
+            pageSize : 20,
+            totalResults : 0
         }
+    }
+
+    //getNews = async function(){
+    getNews = async(type) => {
+        let pageNo = 1;
+        if(type === "next"){
+            pageNo = this.state.page + 1;
+        } else if(type === "previous"){
+            pageNo = this.state.page - 1;
+        } 
+        console.log("getNews pageNo = " + pageNo)
+        let url = `https://newsapi.org/v2/top-headlines?country=in&apiKey=${KEY}&page=${pageNo}&pageSize=${this.state.pageSize}`
+        let data = await fetch(url);
+        let parsedData = await data.json();
+        console.log(parsedData);
+        this.setState({
+            articles : parsedData.articles,
+            totalResults : parsedData.totalResults
+        });
     }
 
     async componentDidMount(){
         console.log("componentDidMount");
-        let url = `https://newsapi.org/v2/top-headlines?country=in&apiKey=${KEY}`
-        let data = await fetch(url);
-        let parsedData = await data.json();
-        console.log(parsedData);
-        this.setState({articles : parsedData.articles});
+        await this.getNews();
+    }
+
+    handlePreviousClick = async(e) => {
+        e.preventDefault();
+        this.setState({
+            page : this.state.page - 1
+        });
+        console.log("handlePreviousClick page = " + this.state.page);
+        await this.getNews("previous");
+    }
+
+    handleNextClick = async(e) => {
+        //let page = this.state.page;
+        e.preventDefault();
+        if((this.state.page + 1) > Math.ceil(this.state.totalResults/this.state.pageSize)){
+
+        } else{
+            this.setState({
+                page : this.state.page + 1
+            });
+            console.log("handleNextClick page = " + this.state.page);
+            await this.getNews("next");
+        } 
     }
 
     render() {
@@ -29,18 +70,22 @@ export class News extends Component {
             <div className="container my-3">
                 <h2>NewsMonkey - Top Headlines</h2>
                 <div className="row">
-                {this.state.articles.map((element) => {                
-                   // console.log(element);
-                   return (<div key={element.url} className="col-md-4">
-                        <NewsItem
-                            title={element.title ? element.title.slice(0, 45) : ""}
-                            description={element.description ? element.description.slice(0, 85) : ""}
-                            imgUrl={element.urlToImage ? element.urlToImage : defaultImgUrl} 
-                            newsUrl={element.url}
-                            />
-                    </div>)     
-                })}  
-                </div>    
+                    {this.state.articles.map((element) => {                
+                    // console.log(element);
+                    return (<div key={element.url} className="col-md-4">
+                            <NewsItem
+                                title={element.title ? element.title.slice(0, 45) : ""}
+                                description={element.description ? element.description.slice(0, 85) : ""}
+                                imgUrl={element.urlToImage ? element.urlToImage : defaultImgUrl} 
+                                newsUrl={element.url}
+                                />
+                        </div>)     
+                    })}  
+                </div> 
+                <div className="container d-flex justify-content-end">
+                    <button type="button" disabled={this.state.page <= 1} className="btn btn-dark mx-2" onClick={this.handlePreviousClick}> &larr; Previous</button>    
+                    <button type="button" className="btn btn-dark mx-2" onClick={this.handleNextClick}>Next &rarr;</button>    
+                </div>   
             </div>
         )
     }
