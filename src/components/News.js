@@ -41,7 +41,7 @@ export class News extends Component {
             pageNo = this.state.page - 1;
         } 
         console.log("getNews pageNo = " + pageNo)
-        let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${KEY}&page=${pageNo}&pageSize=${this.props.pageSize}`
+        const url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${KEY}&page=${pageNo}&pageSize=${this.props.pageSize}`
         let data = await fetch(url);
         let parsedData = await data.json();
         console.log(parsedData);
@@ -69,14 +69,14 @@ export class News extends Component {
     handleNextClick = async(e) => {
         //let page = this.state.page;
         e.preventDefault();
-        if(!((this.state.page + 1) > Math.ceil(this.state.totalResults/this.props.pageSize))){
+        //if(!((this.state.page + 1) > Math.ceil(this.state.totalResults/this.props.pageSize))){
             console.log("next click!");
             this.setState({
                 page : this.state.page + 1
             });
             console.log("handleNextClick page = " + this.state.page);
             await this.getNews("next");
-        } 
+        //} 
     }
 
     render() {
