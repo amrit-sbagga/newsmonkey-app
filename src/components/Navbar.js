@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { Link } from 'react-router-dom'
 
 export class Navbar extends Component {
     static propTypes = {
@@ -10,26 +11,24 @@ export class Navbar extends Component {
         return (
             <div>
                 <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-                <a className="navbar-brand" href="/">NewsMonkey</a>
+                <Link className="navbar-brand" to="/">NewsMonkey</Link>
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
                 </button>
 
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul className="navbar-nav mr-auto">
-                    <li className="nav-item active">
-                        <a className="nav-link" href="/">Home <span className="sr-only">(current)</span></a>
-                    </li>
-                    <li className="nav-item"><a className="nav-link" href="/about">About</a></li>
-                    <li className="nav-item"><a className="nav-link" href="/about">Business</a></li>
-                    <li className="nav-item"><a className="nav-link" href="/about">Entertainment</a></li>
-                    <li className="nav-item"><a className="nav-link" href="/about">General</a></li>
-                    <li className="nav-item"><a className="nav-link" href="/about">Health</a></li>
-                    <li className="nav-item"><a className="nav-link" href="/about">Science</a></li>
-                    <li className="nav-item"><a className="nav-link" href="/about">Sports</a></li>
+                    <li className="nav-item active"><Link to="/">Home</Link></li>
+                    {/* <li className="nav-item"><Link to="/about">About</a></li> */}
+                    <li className="nav-item mx-2"><Link to="/business">Business</Link></li>
+                    <li className="nav-item mx-2"><Link to="/entertainment">Entertainment</Link></li>
+                    <li className="nav-item mx-2"><Link to="/health">Health</Link></li>
+                    <li className="nav-item mx-2"><Link to="/science">Science</Link></li>
+                    <li className="nav-item mx-2"><Link to="/sports">Sports</Link></li>
+                    <li className="nav-item mx-2"><Link to="/technology">Technology</Link></li>
   
                     {/* <li className="nav-item">
-                        <a className="nav-link" href="/">Link</a>
+                        <Link to="/">Link</a>
                     </li> */}
                     {/* <li className="nav-item dropdown">
                         <a className="nav-link dropdown-toggle" href="/" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
