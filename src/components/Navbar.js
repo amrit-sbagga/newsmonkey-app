@@ -20,13 +20,18 @@ export class Navbar extends Component {
                     <li className="nav-item active">
                         <a className="nav-link" href="/">Home <span className="sr-only">(current)</span></a>
                     </li>
-                    <li className="nav-item">
-                        <a className="nav-link" href="/about">About</a>
-                    </li>
+                    <li className="nav-item"><a className="nav-link" href="/about">About</a></li>
+                    <li className="nav-item"><a className="nav-link" href="/about">Business</a></li>
+                    <li className="nav-item"><a className="nav-link" href="/about">Entertainment</a></li>
+                    <li className="nav-item"><a className="nav-link" href="/about">General</a></li>
+                    <li className="nav-item"><a className="nav-link" href="/about">Health</a></li>
+                    <li className="nav-item"><a className="nav-link" href="/about">Science</a></li>
+                    <li className="nav-item"><a className="nav-link" href="/about">Sports</a></li>
+  
                     {/* <li className="nav-item">
                         <a className="nav-link" href="/">Link</a>
                     </li> */}
-                    <li className="nav-item dropdown">
+                    {/* <li className="nav-item dropdown">
                         <a className="nav-link dropdown-toggle" href="/" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Categories
                         </a>
@@ -37,7 +42,7 @@ export class Navbar extends Component {
                         <div className="dropdown-divider"></div>
                         <a className="dropdown-item" href="/">Business</a>
                         </div>
-                    </li>
+                    </li> */}
                     {/* <li className="nav-item">
                         <a className="nav-link disabled" href="/">Disabled</a>
                     </li> */}

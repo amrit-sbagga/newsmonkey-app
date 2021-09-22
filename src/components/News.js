@@ -2,16 +2,26 @@ import React, { Component } from 'react';
 import NewsItem from './NewsItem';
 import { KEY } from '../keys';
 import Spinner from './Spinner';
+import PropTypes from 'prop-types'
 let defaultImgUrl = "https://ik.imagekit.io/demo/img/tr:di-default-image.jpg/original-image.jpg";
 
 export class News extends Component {
-    articles = []
+    static defaultProps = {
+        country : 'in',
+        pageSize : 8,
+        category : 'general'
+    }
+    static propTypes = {
+        country : PropTypes.string,
+        pageSize : PropTypes.number,
+        category : PropTypes.string
+    }
 
     constructor(){
         super();
         //console.log("constructor..", KEY);
         this.state = {
-            articles : this.articles,
+            articles : [],
             loading : false,
             page : 1,
            // pageSize : 20,
@@ -31,7 +41,7 @@ export class News extends Component {
             pageNo = this.state.page - 1;
         } 
         console.log("getNews pageNo = " + pageNo)
-        let url = `https://newsapi.org/v2/top-headlines?country=in&apiKey=${KEY}&page=${pageNo}&pageSize=${this.props.pageSize}`
+        let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${KEY}&page=${pageNo}&pageSize=${this.props.pageSize}`
         let data = await fetch(url);
         let parsedData = await data.json();
         console.log(parsedData);
@@ -72,7 +82,7 @@ export class News extends Component {
     render() {
         return (
             <div className="container my-3">
-                <h1 className="text-center">NewsMonkey - Top Headlines</h1>
+                <h1 className="text-center" style={{margin: '10px 0px'}}>NewsMonkey - Top Headlines</h1>
                 {this.state.loading && <Spinner />}
                 <div className="row">
                     {!this.state.loading && this.state.articles.map((element) => {                
