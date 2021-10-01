@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import NewsItem from './NewsItem';
-import { KEY } from '../keys';
+//import { KEY } from '../keys';
 import Spinner from './Spinner';
 import PropTypes from 'prop-types'
 import InfiniteScroll from 'react-infinite-scroll-component';
 let defaultImgUrl = "https://ik.imagekit.io/demo/img/tr:di-default-image.jpg/original-image.jpg";
 
 export class News extends Component {
+    apiKey = process.env.REACT_APP_NEWS_API
     static defaultProps = {
         country : 'in',
         pageSize : 8,
@@ -38,7 +39,7 @@ export class News extends Component {
     //getNews = async function(){
     updateNews = async(type) => {
         this.props.setProgress(10);
-        const url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${KEY}&page=${this.state.page}&pageSize=${this.props.pageSize}`
+        const url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.apiKey}&page=${this.state.page}&pageSize=${this.props.pageSize}`
         this.setState({
             loading : true
         });
@@ -73,7 +74,7 @@ export class News extends Component {
             page : this.state.page+1
         })
         //await this.updateNews();
-        const url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${KEY}&page=${this.state.page}&pageSize=${this.props.pageSize}`
+        const url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.apiKey}&page=${this.state.page}&pageSize=${this.props.pageSize}`
         // this.setState({
         //     loading : true
         // });
