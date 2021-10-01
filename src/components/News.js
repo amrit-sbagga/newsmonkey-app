@@ -42,13 +42,14 @@ const News = (props) => {
             await updateNews();
         }
         fetchUpdatedNews();
+        // eslint-disable-next-line
     }, [])
 
     const fetchMoreData = async() => {
-        setPage(page + 1);
-        
-        const url = `https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=${apiKey}&page=${page}&pageSize=${props.pageSize}`
-        
+         
+        const url = `https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=${apiKey}&page=${page+1}&pageSize=${props.pageSize}`
+        setPage(page + 1); //page updated after url coz async loading is slow
+
         let data = await fetch(url);
         let parsedData = await data.json();
         console.log(parsedData);
@@ -79,7 +80,7 @@ const News = (props) => {
     return (
         // <div className="container my-3">
         <>
-            <h1 className="text-center" style={{margin: '10px 0px'}}>NewsMonkey - Top {capitalizeFirstLetter(`${props.category}`)} Headlines</h1>
+            <h1 className="text-center" style={{margin: '10px 0px', marginTop : '90px'}}>NewsMonkey - Top {capitalizeFirstLetter(`${props.category}`)} Headlines</h1>
             {loading && <Spinner />}
             
             <InfiniteScroll
