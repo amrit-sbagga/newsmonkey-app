@@ -17,8 +17,6 @@ const News = (props) => {
     const capitalizeFirstLetter = (string) => {
         return string.charAt(0).toUpperCase() + string.slice(1);
     }
-
-    //document.title = capitalizeFirstLetter(`${props.category} - NewsMonkey`);
     
     const updateNews = async() => {
         props.setProgress(10);
@@ -38,6 +36,7 @@ const News = (props) => {
     }
 
     useEffect(() => {
+        document.title = capitalizeFirstLetter(`${props.category} - NewsMonkey`);
         async function fetchUpdatedNews() {
             await updateNews();
         }
