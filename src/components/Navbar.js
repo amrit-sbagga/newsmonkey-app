@@ -18,17 +18,17 @@ export class Navbar extends Component {
 
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul className="navbar-nav mr-auto">
-                    <li className="nav-item active"><Link to="/">Home</Link></li>
-                    {/* <li className="nav-item"><Link to="/about">About</a></li> */}
-                    <li className="nav-item mx-2"><Link to="/business">Business</Link></li>
-                    <li className="nav-item mx-2"><Link to="/entertainment">Entertainment</Link></li>
-                    <li className="nav-item mx-2"><Link to="/health">Health</Link></li>
-                    <li className="nav-item mx-2"><Link to="/science">Science</Link></li>
-                    <li className="nav-item mx-2"><Link to="/sports">Sports</Link></li>
-                    <li className="nav-item mx-2"><Link to="/technology">Technology</Link></li>
+                    <li className="nav-item active"><Link className="nav-link" to="/">Home</Link></li>
+                    {/* <li className="nav-item"><Link className="nav-link" to="/about">About</a></li> */}
+                    <li className="nav-item mx-2"><Link className="nav-link" to="/business">Business</Link></li>
+                    <li className="nav-item mx-2"><Link className="nav-link" to="/entertainment">Entertainment</Link></li>
+                    <li className="nav-item mx-2"><Link className="nav-link" to="/health">Health</Link></li>
+                    <li className="nav-item mx-2"><Link className="nav-link" to="/science">Science</Link></li>
+                    <li className="nav-item mx-2"><Link className="nav-link" to="/sports">Sports</Link></li>
+                    <li className="nav-item mx-2"><Link className="nav-link" to="/technology">Technology</Link></li>
   
                     {/* <li className="nav-item">
-                        <Link to="/">Link</a>
+                        <Link className="nav-link" to="/">Link</a>
                     </li> */}
                     {/* <li className="nav-item dropdown">
                         <a className="nav-link dropdown-toggle" href="/" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
